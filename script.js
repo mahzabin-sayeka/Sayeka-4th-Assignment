@@ -1,5 +1,7 @@
 let interviewList = [];
 let rejectedList = [];
+let currentStatus = 'all'
+
 
 let total = document.getElementById('total');
 let interviewcount = document.getElementById('interviewcount');
@@ -31,6 +33,7 @@ function toggleStyle(id){
     rejectedFilterBtn.classList.add('bg-white','text-black')
 
     const selected = document.getElementById(id)
+    currentStatus = id
     // console.log(selected);
     
     selected.classList.remove('bg-white','text-black')
@@ -39,6 +42,7 @@ function toggleStyle(id){
     if(id == 'interview-filter-btn'){
         allcardsection.classList.add('hidden');
         filterSection.classList.remove('hidden')
+        renderInterview()
     }
     else if(id=='all-filter-btn'){
         allcardsection.classList.remove('hidden');
@@ -47,6 +51,7 @@ function toggleStyle(id){
     else if(id == 'rejected-filter-btn'){
         allcardsection.classList.add('hidden');
         filterSection.classList.remove('hidden')
+        renderRejected()
     }
 
 }
@@ -90,7 +95,11 @@ mainContainer.addEventListener('click', function(event){
 
     calculatecount()
 
-    renderInterview()
+    if (currentStatus == 'rejected-filter-btn'){
+        renderRejected()
+    }
+
+    // renderInterview()
 
     }
 
@@ -128,10 +137,15 @@ mainContainer.addEventListener('click', function(event){
         rejectedList.push(cardInfo)
      }
     interviewList = interviewList.filter(item=> item.companyName != cardInfo.companyName)
+    
+    if(currentStatus = "interview-filter-btn"){
+        renderInterview();
+    }
+
 
     calculatecount()
 
-    renderRejected()
+    // renderRejected()
 
     }
 
