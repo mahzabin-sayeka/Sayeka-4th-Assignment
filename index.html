@@ -55,7 +55,25 @@
             <button onclick="toggleStyle('rejected-filter-btn')" class="bg-white  text-gray-800 font-semibold text-xs rounded-sm px-5 py-2" id="rejected-filter-btn">Rejected</button>
         </div>
 
-            <section id="filtered-section" class="hidden"></section>
+            <section id="filtered-section" class="hidden">
+
+               <div id="no-interview-msg" class="hidden flex flex-col items-center justify-center py-20 text-center">
+                    <div class="bg-white p-6 rounded-full mb-4">
+                      <img src="./images/jobs.png">
+                    </div>
+                   <h2 class="text-2xl text-black">No Jobs Available</h2>
+                   <p class="text-gray-500 mt-2">Check back soon for new job opportunities</p>
+               </div>
+
+    <div id="no-rejected-msg" class="hidden flex flex-col items-center justify-center py-20 text-center">
+        <div class="bg-white p-6 rounded-full mb-4">
+                      <img src="./images/jobs.png">
+                    </div>
+                   <h2 class="text-2xl text-black">No Jobs Available</h2>
+                   <p class="text-gray-500 mt-2">Check back soon for new job opportunities</p>
+               </div>
+
+            </section>
 
             <section id="allcard">
                 <!-- card-1 -->
