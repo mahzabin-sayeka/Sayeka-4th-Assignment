@@ -152,6 +152,31 @@ mainContainer.addEventListener('click', function(event){
 
     }
 
+    // delete
+
+    else if (event.target.closest('.btn-delete')) {
+        const card = event.target.closest('.card1');
+    
+        if (card) {
+        const companyName = card.querySelector('.company-name').innerText;
+
+        
+        interviewList = interviewList.filter(item => item.companyName !== companyName);
+        rejectedList = rejectedList.filter(item => item.companyName !== companyName)
+        card.remove();
+        
+        calculatecount();
+       
+        if (currentStatus === 'interview-filter-btn') {
+            renderInterview();
+        } else if (currentStatus === 'rejected-filter-btn') {
+            renderRejected();
+        }
+        }
+    }
+        
+    
+
 })
 
 function renderInterview(){
