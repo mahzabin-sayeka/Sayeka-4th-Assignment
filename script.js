@@ -1,7 +1,8 @@
 let interviewList = [];
 let rejectedList = [];
-let currentStatus = 'all'
-
+// let currentStatus = 'all'
+/////////////
+let currentStatus = 'all-filter-btn';
 
 let total = document.getElementById('total');
 let interviewcount = document.getElementById('interviewcount');
@@ -10,6 +11,7 @@ let rejectedcount = document.getElementById('rejectedcount');
 const allFilterBtn = document.getElementById('all-filter-btn')
 const interviewFilterBtn = document.getElementById('interview-filter-btn')
 const rejectedFilterBtn = document.getElementById('rejected-filter-btn')
+const dynamicCounter = document.getElementById('dynamic-counter')
 
 const noInterviewMsg = document.getElementById('no-interview-msg');
 const noRejectedMsg = document.getElementById('no-rejected-msg')
@@ -23,10 +25,25 @@ function calculatecount(){
     total.innerText = allcardsection.children.length
     interviewcount.innerText = interviewList.length
     rejectedcount.innerText = rejectedList.length
+
+
+    
+    if (currentStatus === 'all-filter-btn') {
+        dynamicCounter.innerText = `${total.innerText} jobs`;
+    } 
+    else if (currentStatus === 'interview-filter-btn') {
+        dynamicCounter.innerText = `${interviewList.length} of ${total.innerText} jobs`;
+    } 
+    else if (currentStatus === 'rejected-filter-btn') {
+        dynamicCounter.innerText = `${rejectedList.length} of ${total.innerText} jobs`;
+    }
+
+
 }
 calculatecount()
 
 function toggleStyle(id){
+
     allFilterBtn.classList.remove('bg-blue-500','text-white')
     interviewFilterBtn.classList.remove('bg-blue-500','text-white')
     rejectedFilterBtn.classList.remove('bg-blue-500','text-white')
@@ -37,6 +54,8 @@ function toggleStyle(id){
 
     const selected = document.getElementById(id)
     currentStatus = id
+    calculatecount();
+    /////////////
     // console.log(selected);
     
     selected.classList.remove('bg-white','text-black')
@@ -57,6 +76,7 @@ function toggleStyle(id){
         renderRejected()
     }
 
+    
 }
 
 mainContainer.addEventListener('click', function(event){
